@@ -1,0 +1,35 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Iniciar sesión</h1>
+
+    {% if error %}
+    <div class="notification is-danger is-light">
+      {{ error }}
+    </div>
+    {% endif %}
+
+    <form action="{% url 'users:login' %}" method="post">
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="username-id" class="label">Usuario:</label>
+        <div class="control">
+          <input class="input" type="text" name="username" id="username-id" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password-id" class="label">Contraseña:</label>
+        <div class="control">
+          <input class="input" type="password" name="password" id="password-id" required />
+        </div>
+      </div>
+
+      <button class="button is-link" type="submit">Ingresar</button>
+    </form>
+  </div>
+</section>
+{% endblock content %}

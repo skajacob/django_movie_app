@@ -1,0 +1,105 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">Crear usuario</h1>
+
+    {% for error in form.non_field_errors %}
+    <div class="notification is-danger is-light">
+      {{ error }}
+    </div>
+    {% endfor %}
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="username-id" class="label">Usuario:</label>
+        <div class="control">
+          <input
+            class="input{% if form.username.errors %} is-danger{% endif %}"
+            type="text"
+            name="username"
+            id="username-id"
+            {% if form.errors %}value="{{ form.username.value }}"{% endif %}
+            required
+          />
+        </div>
+        {% for error in form.username.errors %}
+        <p class="help is-danger">{{ error }}</p>
+        {% endfor %}
+      </div>
+
+      <div class="field">
+        <label for="email-id" class="label">Correo electrónico:</label>
+        <div class="control">
+          <input
+            class="input{% if form.email.errors %} is-danger{% endif %}"
+            type="email"
+            name="email"
+            id="email-id"
+            {% if form.errors %}value="{{ form.email.value }}"{% endif %}
+            required
+          />
+        </div>
+        {% for error in form.email.errors %}
+        <p class="help is-danger">{{ error }}</p>
+        {% endfor %}
+      </div>
+
+      <div class="field">
+        <label for="first-name-id" class="label">Nombre(s):</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            name="first_name"
+            id="first-name-id"
+            {% if form.errors %}value="{{ form.first_name.value }}"{% endif %}
+            required
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="last-name-id" class="label">Apellido(s):</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            name="last_name"
+            id="last-name-id"
+            {% if form.errors %}value="{{ form.last_name.value }}"{% endif %}
+            required
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password-id" class="label">Contraseña:</label>
+        <div class="control">
+          <input class="input" type="password" name="password" id="password-id" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password-confirmation-id" class="label">
+          Repetir contraseña:
+        </label>
+        <div class="control">
+          <input
+            class="input"
+            type="password"
+            name="password_confirmation"
+            id="password-confirmation-id"
+            required
+          />
+        </div>
+      </div>
+
+      <button class="button is-link" type="submit">Crear</button>
+    </form>
+  </div>
+</section>
+{% endblock content %}

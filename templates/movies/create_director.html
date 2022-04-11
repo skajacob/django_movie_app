@@ -1,0 +1,70 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+     Crear director
+    </h1>
+
+    {% for error in form.non_field_errors %}
+    <div class="notification is-danger is-light">
+      {{ error }}
+    </div>
+    {% endfor %}
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="id_first_name" class="label">Nombre(s):</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            name="first_name"
+            {% if form.errors %}value="{{ form.first_name.value }}"{% endif %}
+            id="id_first_name"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="id_last_name" class="label">Apellido(s):</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            name="last_name"
+            {% if form.errors %}value="{{ form.last_name.value }}"{% endif %}
+            id="id_last_name"
+            required
+          />
+        </div>
+      </div>    
+      
+      <div class="field">
+        <label for="id_birthday" class="label">Cumpleaños:</label>
+        <div class="control">
+          <input
+            class="input{% if form.birthday.errors %} is-danger{% endif %}"
+            type="date"
+            name="birthday"
+            id="id_birthday"
+            {% if form.errors %}value="{{ form.birthday.value }}"{% endif %}
+            required
+          />
+        </div>
+        {% for error in form.birthday.errors %}
+        <p class="help is-danger">{{ error }}</p>
+        {% endfor %}
+      </div>
+
+      <button class="button is-link" type="submit">
+        Crear
+      </button>
+
+    </form>
+</section>
+{% endblock content %}

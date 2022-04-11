@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Detalle de película
+    </h1>
+
+    <div class="content">
+      <h2 class="has-text-link">{{ movie.name }}</h2>
+      <h4>Fecha de salida</h4>
+      <p>{{ movie.release_date }}</p>
+      <h4>Detalles de director</h4>
+      <ul>
+        <li>Nombre(s): {{ movie.director.first_name }}</li>
+        <li>Apellido(s): {{ movie.director.last_name }}</li>
+        <li>Cumpleaños: {{ movie.director.birthday }}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,33 @@
+ 
+{% extends '_base.html' %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="subtitle is-3">
+      Reseñar <strong>{{ movie.name }}</strong> de {{ movie.director.full_name }}
+    </h1>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="stars-id" class="label">Estrellas:</label>
+        <div class="control">
+          <input class="input" type="number" step="1" min="1" max="5" name="stars" id="stars-id" required />
+        </div>
+      </div>
+
+
+      <div class="field">
+        <label class="label">Message</label>
+        <div class="control">
+          <textarea class="textarea" name="comments" placeholder="e.g. No me gustó"></textarea>
+        </div>
+      </div>
+
+      <button class="button is-link" type="submit">Crear</button>
+    </form>
+  </div>
+</section>
+{% endblock content %}
